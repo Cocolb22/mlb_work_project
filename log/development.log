@@ -1,0 +1,76 @@
+Started GET "/" for 127.0.0.1 at 2025-03-03 14:25:34 +0100
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='MlbWorkProject'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='MlbWorkProject'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MlbWorkProject'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/corentin/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/railties-8.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/corentin/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/railties-8.0.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 3.9ms | GC: 0.0ms)
+Completed 200 OK in 34ms (Views: 10.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 8.2ms)
+
+
+Started GET "/icon.png" for 127.0.0.1 at 2025-03-03 14:25:35 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/icon.png"):
+  
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MlbWorkProject'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-03-03 14:39:16 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MlbWorkProject'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/corentin/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/railties-8.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/corentin/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/railties-8.0.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 3.5ms | GC: 0.0ms)
+Completed 200 OK in 44ms (Views: 19.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MlbWorkProject'*/[0m
+  [1m[36mCACHE ActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCACHE ActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCACHE ActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='MlbWorkProject'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (4.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-03-03 13:44:04.155524', '2025-03-03 13:44:04.155529') RETURNING "key" /*application='MlbWorkProject'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MlbWorkProject'*/[0m
+Migrating to CreateUsers (20250303134131)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='MlbWorkProject'*/[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='MlbWorkProject'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250303134131') RETURNING "version" /*application='MlbWorkProject'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='MlbWorkProject'*/[0m
+Migrating to CreateSurveys (20250303134137)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='MlbWorkProject'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "surveys" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='MlbWorkProject'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250303134137') RETURNING "version" /*application='MlbWorkProject'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='MlbWorkProject'*/[0m
+Migrating to CreateQuestions (20250303134142)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='MlbWorkProject'*/[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "questions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "question_field" varchar, "survey_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_15f8f0ec98"
+FOREIGN KEY ("survey_id")
+  REFERENCES "surveys" ("id")
+) /*application='MlbWorkProject'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_questions_on_survey_id" ON "questions" ("survey_id") /*application='MlbWorkProject'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250303134142') RETURNING "version" /*application='MlbWorkProject'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='MlbWorkProject'*/[0m
+Migrating to CreateAnswers (20250303134150)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='MlbWorkProject'*/[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "answer_field" varchar, "points" integer, "question_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_3d5ed4418f"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+) /*application='MlbWorkProject'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_answers_on_question_id" ON "answers" ("question_id") /*application='MlbWorkProject'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250303134150') RETURNING "version" /*application='MlbWorkProject'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='MlbWorkProject'*/[0m
+Migrating to CreateUserAnswers (20250303134201)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='MlbWorkProject'*/[0m
+  [1m[35m (22.3ms)[0m  [1m[35mCREATE TABLE "user_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "survey_id" integer NOT NULL, "answer_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_b8a843d293"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_9ca4effa7a"
+FOREIGN KEY ("survey_id")
+  REFERENCES "surveys" ("id")
+, CONSTRAINT "fk_rails_29957b18ea"
+FOREIGN KEY ("answer_id")
+  REFERENCES "answers" ("id")
+) /*application='MlbWorkProject'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_user_answers_on_user_id" ON "user_answers" ("user_id") /*application='MlbWorkProject'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_user_answers_on_survey_id" ON "user_answers" ("survey_id") /*application='MlbWorkProject'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_user_answers_on_answer_id" ON "user_answers" ("answer_id") /*application='MlbWorkProject'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250303134201') RETURNING "version" /*application='MlbWorkProject'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='MlbWorkProject'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MlbWorkProject'*/[0m
