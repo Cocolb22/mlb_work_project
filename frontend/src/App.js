@@ -5,6 +5,9 @@ import Home from "./pages/Home";
 import CreateSurvey from "./pages/Surveys/CreateSurvey";
 import CreateQuestion from "./pages/Question/CreateQuestion";
 import AddQuestionsToSurvey from "./pages/AddQuestionsToSurvey";
+import IndexSurvey from "./pages/Surveys/IndexSurvey";
+import Survey from "./pages/Surveys/Surveys";
+
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
           <Route path="/create-survey" element={<CreateSurvey />} />
           <Route path="/create-question" element={<CreateQuestion />} />
           <Route path="/add-questions-to-survey" element={<AddQuestionsToSurvey />} />
+          <Route path="/surveys" element={<IndexSurvey />} />
+          <Route path="/survey/:id" element={<Survey />} />
+
         </Routes>
       </div>
     </Router>

@@ -5,8 +5,15 @@ class Api::V1::SurveysController < ApplicationController
   end
 
   def show
-    @survey = Survey.find_by(id: params[:id])
-    render json: @survey
+    puts "Recherche du questionnaire avec l'ID : #{params[:id]}"
+    @survey = Survey.includes(questions: :answers).find_by(id: params[:id])
+
+    if @survey
+      render json: @survey, include: { questions: { include: :answers } }
+    else
+      puts " Questionnaire introuvable"
+      render json: { error: "Survey not found" }, status: :not_found
+    end
   end
 
   def create
