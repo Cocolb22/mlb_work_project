@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema[8.0].define(version: 2025_03_03_134201) do
   create_table "answers", force: :cascade do |t|
-    t.string "answer_field"
+    t.string "content"
     t.integer "points"
     t.integer "question_id", null: false
     t.datetime "created_at", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_03_134201) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "question_field"
+    t.string "content"
     t.integer "survey_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,25 +30,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_03_134201) do
 
   create_table "surveys", force: :cascade do |t|
     t.string "name"
-    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "user_answers", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "survey_id", null: false
+    t.integer "question_id", null: false
     t.integer "answer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["answer_id"], name: "index_user_answers_on_answer_id"
-    t.index ["survey_id"], name: "index_user_answers_on_survey_id"
+    t.index ["question_id"], name: "index_user_answers_on_question_id"
     t.index ["user_id"], name: "index_user_answers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,6 +56,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_03_134201) do
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "surveys"
   add_foreign_key "user_answers", "answers"
-  add_foreign_key "user_answers", "surveys"
+  add_foreign_key "user_answers", "questions"
   add_foreign_key "user_answers", "users"
 end
