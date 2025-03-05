@@ -21,6 +21,6 @@ class Api::V1::UserAnswersController < ApplicationController
               else "non déterminé"
               end
 
-    render "api/v1/user_answers/create"
+    render json: { profile: @profile }, status: :created
   end
 end
