@@ -1,11 +1,14 @@
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
+
+puts "Cleaning database..."
 
 Survey.destroy_all
 Question.destroy_all
 Answer.destroy_all
+
+puts "Creating survey, questions and answers..."
 
 survey = Survey.create!(name: "Questionnaire Risque")
 
@@ -78,3 +81,7 @@ questions_and_answers.each do |content, answers|
     Answer.create!(content: answer_content, points: points, question: question)
   end
 end
+
+puts "#{Survey.count} survey created!"
+puts "#{Question.count} questions created!"
+puts "#{Answer.count} answers created!"
