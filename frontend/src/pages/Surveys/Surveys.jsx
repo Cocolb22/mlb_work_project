@@ -194,12 +194,12 @@ export default function Surveys() {
             </Text>
 
             <Text fontWeight="bold" mt={4} mb={4}>
-              Vos réponses :
+              Réponses :
             </Text>
             <ul>
               {answers.map((answer, index) => (
                 <li key={index} style={{ marginBottom: '1rem' }}>
-                  <strong>Question :</strong> {answer.question} <br />
+                  <strong>{index + 1}. Question :</strong> {answer.question} <br />
                   <strong>Réponse :</strong> {answer.answer}
                 </li>
               ))}
