@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { Fragment,useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../utils/api";
 import { Container, Flex, Text, Button } from "@chakra-ui/react"
@@ -12,8 +12,9 @@ export default function Surveys() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [userInfo, setUserInfo] = useState({ first_name: null, last_name: null, email: null });
-  const [showModal, setShowModal] = useState(true);
+  const [showUserForm, setShowUserForm] = useState(true);
   const [showAlert, setShowAlert] = useState(false);
+  const [profile, setProfile] = useState(null);
 
   useEffect(() => {
     async function fetchQuestions() {
@@ -30,40 +31,49 @@ export default function Surveys() {
 
   const closeModal = () => {
     if (userInfo.first_name && userInfo.last_name && userInfo.email) {
-      setShowModal(false);
+      setShowUserForm(false);
     } else {
       setShowAlert(true);
     }
   };
 
-  const handleAnswerSelection = (questionId, answerId) => {
-    setAnswers({ ...answers, [questionId]: answerId });
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      submitAnswers();
+  const submitAnswers = useCallback(async (userInfo, finalAnswers) => {
+    try {
+      const response = await api.post("/api/v1/user_answers", {
+        user: {
+          ...userInfo
+        },
+        answers: Object.keys(finalAnswers).map(questionId => ({
+          question_id: questionId,
+          answer_id: finalAnswers[questionId],
+        }))
+      })
+      setProfile(response.data.profile);
+    } catch (error) {
+      console.error("Erreur d'envoi des réponses :", error);
     }
-  };
+  }, []);
+
+  const handleAnswerSelection = useCallback((questionId, answerId) => {
+    setAnswers(prevAnswers => {
+      const updatedAnswers = { ...prevAnswers, [questionId]: answerId };
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+      } else {
+        submitAnswers(userInfo, updatedAnswers);
+      }
+      return updatedAnswers;
+    });
+  }, [userInfo, currentQuestionIndex, questions.length, submitAnswers]);
+
 
   const onPreviousQuestion = () => {
     setCurrentQuestionIndex(currentQuestionIndex - 1);
   };
 
-  const submitAnswers = () => {
-    api.post("/api/v1/user_answers", {
-      ...userInfo,
-      answers: Object.keys(answers).map(questionId => ({
-        question_id: questionId,
-        answer_id: answers[questionId],
-      }))
-    })
-    .then(response => alert(`Votre profil est : ${response.data.profile}`))
-    .catch(error => console.error("Erreur d'envoi des réponses :", error));
-  };
-
   return (
     <Container maxWidth={'75vw'}>
-        {showModal && (
+        {showUserForm && (
           <>
             <Text textStyle='xl' fontWeight="bold" textAlign="center" mb={4}>Informations utilisateur</Text>
             <Flex gap="4" direction="column" justifyContent="center" alignItems="center" width="50%" margin="auto">
@@ -88,35 +98,43 @@ export default function Surveys() {
                 {showAlert && (
                   <ErrorAlert message="Veuillez remplir tous les champs" />
                 )}
-              <Button onClick={closeModal}>Commencer le questionnaire</Button>
+              <Button onClick={closeModal} colorPalette="blue">Commencer le questionnaire</Button>
             </Flex>
           </>
         )}
 
-        {questions.length === 0 && !showModal && (
+        {questions.length === 0 && !showUserForm && (
           <p>Chargement...</p>
         )}
 
-        {questions.length > 0 && !showModal && (
+        {questions.length > 0 && !showUserForm && !profile && (
           <>
-            <ProgressBar questionsIndex={currentQuestionIndex + 1} totalQuestions={questions.length + 1 } />
+            <ProgressBar questionsIndex={currentQuestionIndex + 1} totalQuestions={questions.length} />
             <Text textStyle='xl' fontWeight="bold" textAlign="center" mb={4}>{questions[currentQuestionIndex].content}</Text>
             <Flex gap="4" direction="column" justifyContent="center" alignItems="center" margin="auto">
-              {questions[currentQuestionIndex].answers.map(answer => (
-              <Button
-                key={answer.id}
-                onClick={() => handleAnswerSelection(questions[currentQuestionIndex].id, answer.id)}
-                colorPalette="blue"
-                variant="subtle"
-                size="xl"
-              >
-                {answer.content}
-              </Button>
-              ))}
+              {questions[currentQuestionIndex].answers
+                .sort(() => Math.random() - 0.5)
+                .map(answer => (
+                  <Button
+                    key={answer.id}
+                    onClick={() => handleAnswerSelection(questions[currentQuestionIndex].id, answer.id)}
+                    colorPalette="blue"
+                    variant="subtle"
+                    size="xl"
+                  >
+                    {answer.content}
+                  </Button>
+                ))
+              }
               {currentQuestionIndex > 0 && (
                 <Button onClick={onPreviousQuestion} margin={8} colorPalette="gray" variant="subtle">Précédent</Button>
               )}
             </Flex>
+          </>
+        )}
+        {profile && (
+          <>
+            <Text textStyle='xl' fontWeight="bold" textAlign="center" mb={4}>Votre profil est : {profile}</Text>
           </>
         )}
     </Container>

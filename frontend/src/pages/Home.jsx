@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <Center>
-      <Button onClick={onClick}>Commencer l'évaluation</Button>
+      <Button onClick={onClick} colorPalette="blue">Commencer l'évaluation</Button>
     </Center>
   );
 };

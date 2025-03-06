@@ -28,7 +28,7 @@ questions_and_answers = [
     ["On peut placer une petite partie de ses économies sur des actifs risqués", 2],
     ["On peut placer une partie importante de ses économies sur des actifs risqués pour autant que le jeu en vaille la chandelle !", 3]
   ]],
-  ["Avec votre revenu actuel,", [
+  ["Avec votre revenu actuel", [
     ["Vous ne couvrez pas vos dépenses et cet investissement va permettre de combler la différence", 1],
     ["Couvrez vos dépenses", 2],
     ["Couvrez vos dépenses et vous permet d’épargner tous les mois", 3]
