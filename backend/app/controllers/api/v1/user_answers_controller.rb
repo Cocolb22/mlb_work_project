@@ -7,6 +7,8 @@ class Api::V1::UserAnswersController < ApplicationController
     end
 
     total_score = 0
+    user_answers = []
+
     permitted_answers = params.require(:answers).map do |answer|
       answer.permit(:question_id, :answer_id)
     end
@@ -16,12 +18,24 @@ class Api::V1::UserAnswersController < ApplicationController
       selected_answer = question.answers.find(answer[:answer_id])
 
       total_score += selected_answer.points
-      UserAnswer.create!(user: @user, question: question, answer: selected_answer)
+      user_answer = UserAnswer.create!(user: @user, question: question, answer: selected_answer)
+      user_answers << {
+        question: question.content,
+        answer: selected_answer.content
+      }
     end
 
     @profile = determine_profile(total_score)
 
-    render json: { profile: @profile }, status: :created
+    render json: {
+      user: {
+        first_name: @user.first_name,
+        last_name: @user.last_name,
+        email: @user.email
+      },
+      answers: user_answers,
+      profile: @profile
+    }, status: :created
   end
 
   private
