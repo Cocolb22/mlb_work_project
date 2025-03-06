@@ -4,6 +4,7 @@
 
 * Ouvrir le dossier backend dans une fenêtre du terminal
 * Exécuter la commande `bundle install`
+  * Si vous avez l'erreur `rbenv: version 3.3.4 is not installed`, suivez la partie **rbenv** de cette documentation : https://github.com/lewagon/setup/blob/master/README.fr.md (choisir votre système d'exploitation). Puis faite la commande `rbenv install 3.3.4`
   * Si le bundler n'est pas installé, exécuter la commande `gem install bundler` puis refaite la commande `bundle install`
 * Exécuter la commande `rails db:create db:migrate db:seed` (cela créé la base de données en local et l'initialise avec le questionnaire, les questions et les réponses)
 
