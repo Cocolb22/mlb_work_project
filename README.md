@@ -23,3 +23,9 @@ Ouvrir le dossier backend dans une fenêtre du terminal et exécuter la commande
 Ouvrir le dossier frontend dans une fenêtre du terminal et exécuter la commande `yarn start`
 
 Vous pouvez accéder à l'application en ouvrant votre navigateur et en allant à l'adresse `http://localhost:3000`
+
+# Réinitialisation de la base de données
+Si vous souhaitez réinitialiser la base de données, par exemple après avoir effectué des tests :
+* Ouvrir le dossier backend dans une fenêtre du terminal
+* Exécuter la commande `rails db:reset`
+ATTENTION : Cette commande supprime la base de données en local et la recrée : toutes les données utilisateur seront perdues !
