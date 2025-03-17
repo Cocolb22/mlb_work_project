@@ -1,4 +1,30 @@
-# Initialisation du projet
+# Setup
+
+Afin de pouvoir exécuter le projet en local, les outils suivants sont nécessaires : 
+- rbenv
+- Ruby
+- Node.js
+- yarn 
+- SQlite
+
+Voici un lien pour faire un setup de votre machine suivant votre système d'exploitation (MacOS, Ubuntu, Windows) : https://github.com/lewagon/setup/blob/master/README.fr.md 
+
+## MacOS et Ubuntu
+Suivez les instructions des paragraphes : 
+- Homebrew (MacOS uniquemennt)
+- rbenv (y compris "Installer des gems") 
+- Ruby
+- Node.js
+- yarn
+- SQLite
+
+## Windows
+Windows est moins adapté pour effectuer du développement. Sur MacOS et Ubuntu, les gestionnaires de paquets (`Homebrew` pour MacOS, `apt` pour Ubuntu) simplifient grandement l'installation et la maintenance des outils de développement, en évitant les problèmes de dépendances et en automatisant les mises à jour.
+Le meilleur équivalent pour Windows (que je n'ai jamais utilisé) est Chocolatey. 
+
+Voici 2 approches possibles pour faire un setup sur Windows : 
+
+### 1. Avec Chocolatey 
 
 ## Backend
 
