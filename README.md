@@ -7,11 +7,11 @@ Afin de pouvoir exécuter le projet en local, les outils suivants sont nécessai
 - yarn 
 - SQlite
 
-Voici un lien pour faire un setup de votre machine suivant votre système d'exploitation (MacOS, Ubuntu, Windows) : https://github.com/lewagon/setup/blob/master/README.fr.md 
+Voici un lien pour faire un setup de votre machine suivant votre système d'exploitation (MacOS ou Ubuntu) : https://github.com/lewagon/setup/blob/master/README.fr.md 
 
 ## MacOS et Ubuntu
 Suivez les instructions des paragraphes : 
-- Homebrew (MacOS uniquemennt)
+- Homebrew (MacOS uniquement)
 - rbenv (y compris "Installer des gems") 
 - Ruby
 - Node.js
@@ -25,6 +25,22 @@ Le meilleur équivalent pour Windows (que je n'ai jamais utilisé) est Chocolate
 Voici 2 approches possibles pour faire un setup sur Windows : 
 
 ### 1. Avec Chocolatey 
+Suivez les instructions du fichier `setup_windows.md`
+
+### 2. Avec le Sous-système Windows pour Linux (WSL)
+WSL est une fonctionnalité du système d’exploitation Windows qui vous permet d’exécuter un système de fichiers Linux, ainsi que des outils en ligne de commande et des applications gui Linux, directement sur Windows, en même temps que vos applications et votre bureau Windows traditionnels.. Pour en savoir plus sur WSL, consulte cette page : https://learn.microsoft.com/fr-fr/windows/wsl/faq.
+
+Ouvrir ce lien : https://github.com/lewagon/setup/blob/master/windows.fr.md
+Suivez les instructions des paragraphes : 
+- Sous-système Windows pour Linux (WSL)
+- Ubuntu
+- Windows Terminal
+- Associer ton navigateur par défaut à Ubuntu
+- rbenv (y compris "Installer des gems") 
+- Ruby
+- Node.js
+- yarn
+- SQLite
 
 ## Backend
 
